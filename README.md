@@ -29,7 +29,7 @@ limitations under the License.
   <p>To join us in bringing numerical computing to the web, get started by checking us out on <a href="https://github.com/stdlib-js/stdlib">GitHub</a>, and please consider <a href="https://opencollective.com/stdlib">financially supporting stdlib</a>. We greatly appreciate your continued support!</p>
 </details>
 
-# isAlmostEqualf
+# isAlmostEqual
 
 [![NPM version][npm-image]][npm-url] [![Build Status][test-image]][test-url] [![Coverage Status][coverage-image]][coverage-url] <!-- [![dependencies][dependencies-image]][dependencies-url] -->
 
@@ -45,64 +45,82 @@ limitations under the License.
 
 <!-- Package usage documentation. -->
 
+<section class="installation">
 
+## Installation
+
+```bash
+npm install @stdlib/complex-float32-base-assert-is-almost-equal
+```
+
+Alternatively,
+
+-   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
+-   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
+-   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
+
+The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
+
+To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
+
+</section>
 
 <section class="usage">
 
 ## Usage
 
 ```javascript
-import isAlmostEqualf from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-float32-base-assert-is-almost-equal@esm/index.mjs';
+var isAlmostEqual = require( '@stdlib/complex-float32-base-assert-is-almost-equal' );
 ```
 
-#### isAlmostEqualf( z1, z2, maxULP )
+#### isAlmostEqual( z1, z2, maxULP )
 
 Tests whether two single-precision complex floating-point numbers are approximately equal within a specified number of ULPs (units in the last place).
 
 ```javascript
-import EPS from 'https://cdn.jsdelivr.net/gh/stdlib-js/constants-float32-eps@esm/index.mjs';
-import Complex64 from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-float32-ctor@esm/index.mjs';
+var EPS = require( '@stdlib/constants-float32-eps' );
+var Complex64 = require( '@stdlib/complex-float32-ctor' );
 
 var z1 = new Complex64( 1.0, 3.0 );
 var z2 = new Complex64( 1.0+EPS, 3.0 );
 
-var out = isAlmostEqualf( z1, z2, 0 );
+var out = isAlmostEqual( z1, z2, 0 );
 // returns false
 
-out = isAlmostEqualf( z1, z2, 1 );
+out = isAlmostEqual( z1, z2, 1 );
 // returns true
 ```
 
 The function returns `false` if either input value has a `NaN` real or imaginary component.
 
 ```javascript
-import Complex64 from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-float32-ctor@esm/index.mjs';
+var Complex64 = require( '@stdlib/complex-float32-ctor' );
 
 var z1 = new Complex64( NaN, 3.0 );
 var z2 = new Complex64( 1.0, 3.0 );
 
-var out = isAlmostEqualf( z1, z2, 1 );
+var out = isAlmostEqual( z1, z2, 1 );
 // returns false
 
-out = isAlmostEqualf( z2, z1, 1 );
+out = isAlmostEqual( z2, z1, 1 );
 // returns false
 
 z1 = new Complex64( NaN, NaN );
 z2 = new Complex64( NaN, NaN );
 
-out = isAlmostEqualf( z1, z2, 1 );
+out = isAlmostEqual( z1, z2, 1 );
 // returns false
 ```
 
 The function does not distinguish between `-0` and `+0`, treating them as equal.
 
 ```javascript
-import Complex64 from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-float32-ctor@esm/index.mjs';
+var Complex64 = require( '@stdlib/complex-float32-ctor' );
 
 var z1 = new Complex64( 0.0, 0.0 );
 var z2 = new Complex64( -0.0, -0.0 );
 
-var out = isAlmostEqualf( z1, z2, 0 );
+var out = isAlmostEqual( z1, z2, 0 );
 // returns true
 ```
 
@@ -126,39 +144,30 @@ var out = isAlmostEqualf( z1, z2, 0 );
 
 <!-- eslint no-undef: "error" -->
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<body>
-<script type="module">
-
-import EPS from 'https://cdn.jsdelivr.net/gh/stdlib-js/constants-float32-eps@esm/index.mjs';
-import Complex64 from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-float32-ctor@esm/index.mjs';
-import isAlmostEqualf from 'https://cdn.jsdelivr.net/gh/stdlib-js/complex-float32-base-assert-is-almost-equal@esm/index.mjs';
+```javascript
+var EPS = require( '@stdlib/constants-float32-eps' );
+var Complex64 = require( '@stdlib/complex-float32-ctor' );
+var isAlmostEqual = require( '@stdlib/complex-float32-base-assert-is-almost-equal' );
 
 var z1 = new Complex64( 1.0, 3.0+EPS );
 var z2 = new Complex64( 1.0+EPS, 3.0 );
-console.log( isAlmostEqualf( z1, z2, 1 ) );
+console.log( isAlmostEqual( z1, z2, 1 ) );
 // => true
 
 z1 = new Complex64( 1.0, 3.0+EPS );
 z2 = new Complex64( 1.0+EPS+EPS, 3.0 );
-console.log( isAlmostEqualf( z1, z2, 1 ) );
+console.log( isAlmostEqual( z1, z2, 1 ) );
 // => false
 
 z1 = new Complex64( 0.0, 0.0 );
 z2 = new Complex64( -0.0, 0.0 );
-console.log( isAlmostEqualf( z1, z2, 0 ) );
+console.log( isAlmostEqual( z1, z2, 0 ) );
 // => true
 
 z1 = new Complex64( NaN, 0.0 );
 z2 = new Complex64( 1.0, 0.0 );
-console.log( isAlmostEqualf( z1, z2, 1 ) );
+console.log( isAlmostEqual( z1, z2, 1 ) );
 // => false
-
-</script>
-</body>
-</html>
 ```
 
 </section>
@@ -182,7 +191,7 @@ console.log( isAlmostEqualf( z1, z2, 1 ) );
 
 ## Notice
 
-This package is part of [stdlib][stdlib], a standard library with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
+This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
 
 For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
 
