@@ -29,7 +29,7 @@ limitations under the License.
   <p>To join us in bringing numerical computing to the web, get started by checking us out on <a href="https://github.com/stdlib-js/stdlib">GitHub</a>, and please consider <a href="https://opencollective.com/stdlib">financially supporting stdlib</a>. We greatly appreciate your continued support!</p>
 </details>
 
-# isAlmostEqualf
+# isAlmostEqual
 
 [![NPM version][npm-image]][npm-url] [![Build Status][test-image]][test-url] [![Coverage Status][coverage-image]][coverage-url] <!-- [![dependencies][dependencies-image]][dependencies-url] -->
 
@@ -70,10 +70,10 @@ To view installation and usage instructions specific to each branch build, be su
 ## Usage
 
 ```javascript
-var isAlmostEqualf = require( '@stdlib/complex-float32-base-assert-is-almost-equal' );
+var isAlmostEqual = require( '@stdlib/complex-float32-base-assert-is-almost-equal' );
 ```
 
-#### isAlmostEqualf( z1, z2, maxULP )
+#### isAlmostEqual( z1, z2, maxULP )
 
 Tests whether two single-precision complex floating-point numbers are approximately equal within a specified number of ULPs (units in the last place).
 
@@ -84,10 +84,10 @@ var Complex64 = require( '@stdlib/complex-float32-ctor' );
 var z1 = new Complex64( 1.0, 3.0 );
 var z2 = new Complex64( 1.0+EPS, 3.0 );
 
-var out = isAlmostEqualf( z1, z2, 0 );
+var out = isAlmostEqual( z1, z2, 0 );
 // returns false
 
-out = isAlmostEqualf( z1, z2, 1 );
+out = isAlmostEqual( z1, z2, 1 );
 // returns true
 ```
 
@@ -99,16 +99,16 @@ var Complex64 = require( '@stdlib/complex-float32-ctor' );
 var z1 = new Complex64( NaN, 3.0 );
 var z2 = new Complex64( 1.0, 3.0 );
 
-var out = isAlmostEqualf( z1, z2, 1 );
+var out = isAlmostEqual( z1, z2, 1 );
 // returns false
 
-out = isAlmostEqualf( z2, z1, 1 );
+out = isAlmostEqual( z2, z1, 1 );
 // returns false
 
 z1 = new Complex64( NaN, NaN );
 z2 = new Complex64( NaN, NaN );
 
-out = isAlmostEqualf( z1, z2, 1 );
+out = isAlmostEqual( z1, z2, 1 );
 // returns false
 ```
 
@@ -120,7 +120,7 @@ var Complex64 = require( '@stdlib/complex-float32-ctor' );
 var z1 = new Complex64( 0.0, 0.0 );
 var z2 = new Complex64( -0.0, -0.0 );
 
-var out = isAlmostEqualf( z1, z2, 0 );
+var out = isAlmostEqual( z1, z2, 0 );
 // returns true
 ```
 
@@ -147,26 +147,26 @@ var out = isAlmostEqualf( z1, z2, 0 );
 ```javascript
 var EPS = require( '@stdlib/constants-float32-eps' );
 var Complex64 = require( '@stdlib/complex-float32-ctor' );
-var isAlmostEqualf = require( '@stdlib/complex-float32-base-assert-is-almost-equal' );
+var isAlmostEqual = require( '@stdlib/complex-float32-base-assert-is-almost-equal' );
 
 var z1 = new Complex64( 1.0, 3.0+EPS );
 var z2 = new Complex64( 1.0+EPS, 3.0 );
-console.log( isAlmostEqualf( z1, z2, 1 ) );
+console.log( isAlmostEqual( z1, z2, 1 ) );
 // => true
 
 z1 = new Complex64( 1.0, 3.0+EPS );
 z2 = new Complex64( 1.0+EPS+EPS, 3.0 );
-console.log( isAlmostEqualf( z1, z2, 1 ) );
+console.log( isAlmostEqual( z1, z2, 1 ) );
 // => false
 
 z1 = new Complex64( 0.0, 0.0 );
 z2 = new Complex64( -0.0, 0.0 );
-console.log( isAlmostEqualf( z1, z2, 0 ) );
+console.log( isAlmostEqual( z1, z2, 0 ) );
 // => true
 
 z1 = new Complex64( NaN, 0.0 );
 z2 = new Complex64( 1.0, 0.0 );
-console.log( isAlmostEqualf( z1, z2, 1 ) );
+console.log( isAlmostEqual( z1, z2, 1 ) );
 // => false
 ```
 
