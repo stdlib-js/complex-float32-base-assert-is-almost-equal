@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2025 The Stdlib Authors.
@@ -16,15 +16,11 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
 
-// MODULES //
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@esm/index.d.ts"/>
 
-var isAlmostEqualF32 = require( '@stdlib/number-float32-base-assert-is-almost-equal' );
-var reimf = require( '@stdlib/complex-float32-reim' );
-
-
-// MAIN //
+import { Complex64 } from '@stdlib/types/complex';
 
 /**
 * Tests whether two single-precision complex floating-point numbers are approximately equal within a specified number of ULPs (units in the last place).
@@ -34,10 +30,10 @@ var reimf = require( '@stdlib/complex-float32-reim' );
 * -   The function returns `false` if either input value has a `NaN` real or imaginary component.
 * -   The function does not distinguish between `-0` and `+0`, treating them as equal.
 *
-* @param {Complex64} z1 - first complex number
-* @param {Complex64} z2 - second complex number
-* @param {number} maxULP - maximum allowed ULP difference
-* @returns {boolean} boolean indicating whether two single-precision complex floating-point numbers are approximately equal within a specified number of ULPs
+* @param z1 - first complex number
+* @param z2 - second complex number
+* @param maxULP - maximum allowed ULP difference
+* @returns boolean indicating whether two single-precision complex floating-point numbers are approximately equal within a specified number of ULPs
 *
 * @example
 * var EPS = require( '@stdlib/constants-float32-eps' );
@@ -52,16 +48,9 @@ var reimf = require( '@stdlib/complex-float32-reim' );
 * bool = isAlmostEqual( z1, z2, 1 );
 * // returns true
 */
-function isAlmostEqual( z1, z2, maxULP ) {
-	var parts1 = reimf( z1 );
-	var parts2 = reimf( z2 );
-	return (
-		isAlmostEqualF32( parts1[ 0 ], parts2[ 0 ], maxULP ) &&
-		isAlmostEqualF32( parts1[ 1 ], parts2[ 1 ], maxULP )
-	);
-}
+declare function isAlmostEqual( z1: Complex64, z2: Complex64, maxULP: number ): boolean;
 
 
 // EXPORTS //
 
-module.exports = isAlmostEqual;
+export = isAlmostEqual;
